@@ -1,0 +1,1907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Living | Ace of Arin Properties</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --gold: #B8860B;
+            --gold-light: #DAA520;
+            --gold-dark: #8B6914;
+            --white: #ffffff;
+            --off-white: #FAFAFA;
+            --cream: #F5F5F0;
+            --light-gray: #E8E8E8;
+            --medium-gray: #CCCCCC;
+            --dark-gray: #666666;
+            --dark: #1a1a1a;
+            --black: #0a0a0a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--white);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--cream);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .preloader-content {
+            text-align: center;
+        }
+
+        .preloader-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            color: var(--gold);
+            letter-spacing: 10px;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .preloader-line {
+            width: 200px;
+            height: 1px;
+            background: rgba(184, 134, 11, 0.3);
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preloader-line::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            background: var(--gold);
+            animation: loading 1.5s ease infinite;
+        }
+
+        @keyframes loading {
+            0% { left: -50%; }
+            100% { left: 100%; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.5s ease;
+        }
+
+        .nav.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 20px 60px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav.hero-nav .nav-logo,
+        .nav.hero-nav .nav-links a,
+        .nav.hero-nav .nav-phone {
+            color: var(--white);
+        }
+
+        .nav.scrolled .nav-logo {
+            color: var(--gold);
+        }
+
+        .nav.scrolled .nav-links a,
+        .nav.scrolled .nav-phone {
+            color: var(--dark);
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 3px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 50px;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-contact {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-phone {
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-phone:hover {
+            color: var(--gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('images/exterior.webp') center/cover;
+            transform: scale(1.1);
+            animation: heroZoom 20s ease infinite alternate;
+        }
+
+        @keyframes heroZoom {
+            0% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.3) 0%,
+                rgba(0, 0, 0, 0.4) 50%,
+                rgba(0, 0, 0, 0.6) 100%
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 1000px;
+            padding: 0 20px;
+            color: var(--white);
+        }
+
+        .hero-subtitle {
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem;
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.7s forwards;
+        }
+
+        .hero-title span {
+            font-style: italic;
+            color: var(--gold-light);
+        }
+
+        .hero-location {
+            font-size: 1rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 50px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.9s forwards;
+        }
+
+        .hero-price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            color: var(--gold-light);
+            opacity: 0;
+            animation: fadeInUp 1s ease 1.1s forwards;
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1.3s forwards;
+        }
+
+        .hero-scroll span {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--gold-light), transparent);
+            animation: scrollPulse 2s ease infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Section Styling */
+        section {
+            padding: 150px 60px;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 300;
+            line-height: 1.2;
+            color: var(--dark);
+        }
+
+        .section-line {
+            width: 60px;
+            height: 1px;
+            background: var(--gold);
+            margin: 40px auto 0;
+        }
+
+        /* Overview Section */
+        .overview {
+            background: var(--white);
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0;
+            border: 1px solid var(--light-gray);
+            background: var(--white);
+            box-shadow: 0 10px 60px rgba(0, 0, 0, 0.05);
+        }
+
+        .overview-item {
+            padding: 60px 40px;
+            text-align: center;
+            border-right: 1px solid var(--light-gray);
+            transition: all 0.5s ease;
+            background: var(--white);
+        }
+
+        .overview-item:last-child {
+            border-right: none;
+        }
+
+        .overview-item:hover {
+            background: var(--cream);
+        }
+
+        .overview-icon {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 25px;
+        }
+
+        .overview-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .overview-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--dark-gray);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background: var(--cream);
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: repeat(2, 350px);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item:nth-child(1) {
+            grid-column: span 6;
+            grid-row: span 2;
+        }
+
+        .gallery-item:nth-child(2) {
+            grid-column: span 3;
+        }
+
+        .gallery-item:nth-child(3) {
+            grid-column: span 3;
+        }
+
+        .gallery-item:nth-child(4) {
+            grid-column: span 3;
+        }
+
+        .gallery-item:nth-child(5) {
+            grid-column: span 3;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(184, 134, 11, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-icon {
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--white);
+            transform: scale(0);
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover .gallery-icon {
+            transform: scale(1);
+        }
+
+        .gallery-count {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            color: var(--white);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .gallery-item:hover .gallery-count {
+            opacity: 1;
+        }
+
+        /* Features Section */
+        .features {
+            background: var(--white);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .feature-card {
+            padding: 50px 40px;
+            background: var(--white);
+            border: 1px solid var(--light-gray);
+            text-align: center;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(184, 134, 11, 0.08),
+                transparent
+            );
+            transition: left 0.7s ease;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(184, 134, 11, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 30px;
+        }
+
+        .feature-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .feature-desc {
+            font-size: 0.85rem;
+            color: var(--dark-gray);
+            line-height: 1.8;
+        }
+
+        /* Details Section */
+        .details {
+            background: var(--cream);
+        }
+
+        .details-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .details-image {
+            position: relative;
+        }
+
+        .details-image img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            border-radius: 5px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .details-image-frame {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            right: -30px;
+            bottom: -30px;
+            border: 2px solid var(--gold);
+            border-radius: 5px;
+            z-index: -1;
+        }
+
+        .details-content {
+            padding: 50px 0;
+        }
+
+        .details-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .details-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 300;
+            line-height: 1.2;
+            color: var(--dark);
+            margin-bottom: 40px;
+        }
+
+        .details-text {
+            font-size: 1rem;
+            color: var(--dark-gray);
+            line-height: 2;
+            margin-bottom: 50px;
+        }
+
+        .details-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .details-list-item {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .details-list-label {
+            font-size: 0.85rem;
+            color: var(--dark-gray);
+        }
+
+        .details-list-value {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        /* Price Section */
+        .price-section {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            padding: 100px 60px;
+            text-align: center;
+        }
+
+        .price-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .price-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem;
+            font-weight: 400;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .price-note {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--white);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+        }
+
+        .contact-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 300;
+            color: var(--dark);
+            margin-bottom: 30px;
+        }
+
+        .contact-info p {
+            font-size: 1rem;
+            color: var(--dark-gray);
+            line-height: 2;
+            margin-bottom: 50px;
+        }
+
+        .contact-details {
+            margin-bottom: 50px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover .contact-icon {
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        .contact-text {
+            font-size: 1rem;
+            color: var(--dark);
+        }
+
+        .contact-text span {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--dark-gray);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .contact-form {
+            padding: 60px;
+            background: var(--cream);
+            border: 1px solid var(--light-gray);
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--dark-gray);
+            margin-bottom: 10px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 0;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--medium-gray);
+            color: var(--dark);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--medium-gray);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--gold);
+        }
+
+        .form-group textarea {
+            resize: none;
+            height: 100px;
+        }
+
+        .form-btn {
+            width: 100%;
+            padding: 20px;
+            background: var(--gold);
+            border: none;
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .form-btn:hover {
+            background: var(--gold-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(184, 134, 11, 0.3);
+        }
+
+        /* CTA Buttons */
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px 40px;
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .cta-btn.primary {
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        .cta-btn.primary:hover {
+            background: var(--gold-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(184, 134, 11, 0.3);
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            color: var(--dark);
+            border: 1px solid var(--medium-gray);
+        }
+
+        .cta-btn.secondary:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            padding: 80px 60px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            letter-spacing: 3px;
+        }
+
+        .footer-text {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-social a {
+            width: 45px;
+            height: 45px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(184, 134, 11, 0.1);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 5px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 2rem;
+            color: var(--white);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            color: var(--gold);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: var(--white);
+            cursor: pointer;
+            padding: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .lightbox-nav:hover {
+            color: var(--gold);
+        }
+
+        .lightbox-prev {
+            left: 30px;
+        }
+
+        .lightbox-next {
+            right: 30px;
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.8rem;
+            text-decoration: none;
+            box-shadow: 0 5px 30px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 40px rgba(37, 211, 102, 0.5);
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Location Map Section */
+        .location-section {
+            background: var(--cream);
+            padding: 100px 60px;
+        }
+
+        .location-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .location-map {
+            height: 450px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .location-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .location-content {
+            padding: 40px 0;
+        }
+
+        .location-content h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--dark);
+            margin-bottom: 30px;
+        }
+
+        .location-features {
+            display: grid;
+            gap: 20px;
+        }
+
+        .location-feature {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .location-feature:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .location-feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .location-feature-text h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .location-feature-text p {
+            font-size: 0.85rem;
+            color: var(--dark-gray);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .overview-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .overview-item:nth-child(3) {
+                border-right: none;
+            }
+            
+            .overview-item:nth-child(4),
+            .overview-item:nth-child(5) {
+                border-top: 1px solid var(--light-gray);
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            section {
+                padding: 100px 30px;
+            }
+            
+            .nav {
+                padding: 20px 30px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .gallery-container {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: repeat(3, 300px);
+            }
+            
+            .gallery-item:nth-child(1) {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+            
+            .gallery-item:nth-child(2),
+            .gallery-item:nth-child(3),
+            .gallery-item:nth-child(4),
+            .gallery-item:nth-child(5) {
+                grid-column: span 1;
+            }
+            
+            .details-container {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            
+            .details-image-frame {
+                display: none;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .location-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .overview-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .overview-item {
+                padding: 40px 20px;
+            }
+            
+            .overview-item:nth-child(2),
+            .overview-item:nth-child(4) {
+                border-right: none;
+            }
+            
+            .overview-item:nth-child(3),
+            .overview-item:nth-child(5) {
+                border-top: 1px solid var(--light-gray);
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .details-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .price-value {
+                font-size: 3rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+                gap: 30px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-price {
+                font-size: 2rem;
+            }
+            
+            .overview-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .overview-item {
+                border-right: none;
+                border-bottom: 1px solid var(--light-gray);
+            }
+            
+            .overview-item:last-child {
+                border-bottom: none;
+            }
+            
+            .gallery-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(5, 250px);
+            }
+            
+            .gallery-item:nth-child(1) {
+                grid-column: span 1;
+            }
+
+            .contact-form {
+                padding: 40px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">5-BEDROOM DUPLEX IN IKOTA</div>
+            <div class="preloader-line"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav hero-nav">
+        <a href="#" class="nav-logo">ACE OF ARIN</a>
+        <div class="nav-links">
+            <a href="#overview">Overview</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#features">Features</a>
+            <a href="#details">Details</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="nav-contact">
+            <a href="tel:+2349057157601" class="nav-phone">
+                <i class="fas fa-phone"></i> +234 905 715 7601
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-subtitle">Exclusive Property</p>
+            <h1 class="hero-title">Luxury 5 Bedroom <span>Duplex</span></h1>
+            <p class="hero-location">2nd Toll-Gate, Lekki, Lagos</p>
+            <div class="hero-price">₦480,000,000</div>
+        </div>
+        <div class="hero-scroll">
+            
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="overview" id="overview">
+        <div class="section-header reveal">
+            <p class="section-label">Property Overview</p>
+            <h2 class="section-title">At a Glance</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="overview-grid reveal">
+            <div class="overview-item">
+                <div class="overview-icon">
+                    <i class="fas fa-bed"></i>
+                </div>
+                <div class="overview-value">5</div>
+                <div class="overview-label">Bedrooms</div>
+            </div>
+            <div class="overview-item">
+                <div class="overview-icon">
+                    <i class="fas fa-bath"></i>
+                </div>
+                <div class="overview-value">5</div>
+                <div class="overview-label">Bathrooms</div>
+            </div>
+            <div class="overview-item">
+                <div class="overview-icon">
+                    <i class="fas fa-ruler-combined"></i>
+                </div>
+                <div class="overview-value">360</div>
+                <div class="overview-label">Square Meters</div>
+            </div>
+            <div class="overview-item">
+                <div class="overview-icon">
+                    <i class="fas fa-swimming-pool"></i>
+                </div>
+                <div class="overview-value">1</div>
+                <div class="overview-label">Swimming Pool</div>
+            </div>
+            <div class="overview-item">
+                <div class="overview-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="overview-value">6</div>
+                <div class="overview-label">Toilets</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="section-header reveal">
+            <p class="section-label">Visual Tour</p>
+            <h2 class="section-title">Property Gallery</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="gallery-container reveal">
+            <div class="gallery-item" onclick="openLightbox(0)">
+                <img src="images/frontal.webp" alt="Property Exterior">
+                <div class="gallery-overlay">
+                    <div class="gallery-icon">
+                        <i class="fas fa-expand"></i>
+                    </div>
+                </div>
+                <div class="gallery-count">01 / 10</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(1)">
+                <img src="images/principal.webp" alt="Living Room">
+                <div class="gallery-overlay">
+                    <div class="gallery-icon">
+                        <i class="fas fa-expand"></i>
+                    </div>
+                </div>
+                <div class="gallery-count">02 / 10</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(2)">
+                <img src="images/kitchen.webp" alt="Kitchen">
+                <div class="gallery-overlay">
+                    <div class="gallery-icon">
+                        <i class="fas fa-expand"></i>
+                    </div>
+                </div>
+                <div class="gallery-count">03 / 10</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(3)">
+                <img src="images/bedrrom.webp" alt="Bedroom">
+                <div class="gallery-overlay">
+                    <div class="gallery-icon">
+                        <i class="fas fa-expand"></i>
+                    </div>
+                </div>
+                <div class="gallery-count">04 / 10</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(4)">
+                <img src="images/pool.webp" alt="Pool">
+                <div class="gallery-overlay">
+                    <div class="gallery-icon">
+                        <i class="fas fa-expand"></i>
+                    </div>
+                </div>
+                <div class="gallery-count">05 / 10</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(5)">
+                <img src="images/bath 3.webp" alt="bathroom">
+                <div class="gallery-overlay">
+                    <div class="gallery-icon">
+                        <i class="fas fa-expand"></i>
+                    </div>
+                </div>
+                <div class="gallery-count">06 / 10</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(6)">
+                <img src="images/wardrobe.webp" alt="wardrobe">
+                <div class="gallery-overlay">
+                    <div class="gallery-icon">
+                        <i class="fas fa-expand"></i>
+                    </div>
+                </div>
+                <div class="gallery-count">07 / 10</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(7)">
+                <img src="images/stairs.webp" alt="stairs">
+                <div class="gallery-overlay">
+                    <div class="gallery-icon">
+                        <i class="fas fa-expand"></i>
+                    </div>
+        </div>
+        <div class="gallery-count">08 / 10</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(7)">
+                <img src="images/fat.webp" alt="bathroom">
+                <div class="gallery-overlay">
+                    <div class="gallery-icon">
+                        <i class="fas fa-expand"></i>
+                    </div>
+        </div>
+        <div class="gallery-count">09 / 10</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(7)">
+                <img src="images/console.webp" alt="bedroom">
+                <div class="gallery-overlay">
+                    <div class="gallery-icon">
+                        <i class="fas fa-expand"></i>
+                    </div>
+        </div>
+        <div class="gallery-count">10 / 10</div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(7)">
+                <img src="images/ext.webp" alt="exterior">
+                <div class="gallery-overlay">
+                    <div class="gallery-icon">
+                        <i class="fas fa-expand"></i>
+                    </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="section-header reveal">
+            <p class="section-label">Premium Amenities</p>
+            <h2 class="section-title">Exclusive Features</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="features-grid reveal">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-bed"></i>
+                </div>
+                <h3 class="feature-title">En-suite Bedrooms</h3>
+                <p class="feature-desc">Five luxuriously appointed bedrooms, each with private bathroom and modern amenities.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-door-open"></i>
+                </div>
+                <h3 class="feature-title">Walk-in Closet</h3>
+                <p class="feature-desc">Expansive wardrobe space designed for the discerning homeowner.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-swimming-pool"></i>
+                </div>
+                <h3 class="feature-title">Swimming Pool</h3>
+                <p class="feature-desc">Private infinity pool for relaxation and entertainment.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <h3 class="feature-title">CCTV Surveillance</h3>
+                <p class="feature-desc">Comprehensive 24/7 security monitoring system throughout the property.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-couch"></i>
+                </div>
+                <h3 class="feature-title">Family Lounge</h3>
+                <p class="feature-desc">Dedicated family gathering space with premium finishes.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h3 class="feature-title">Fitted Kitchen</h3>
+                <p class="feature-desc">Well equipped kitchen with modern appliances and fixtures.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3 class="feature-title">Ensuite BQ</h3>
+                <p class="feature-desc">Self-contained boys quarters for staff accommodation.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-warehouse"></i>
+                </div>
+                <h3 class="feature-title">Spacious Living</h3>
+                <p class="feature-desc">Grand sitting room with high ceilings and natural lighting.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Details Section -->
+    <section class="details" id="details">
+        <div class="details-container">
+            <div class="details-image reveal">
+                <img src="images/exterior.webp" alt="Property">
+                <div class="details-image-frame"></div>
+            </div>
+            <div class="details-content reveal">
+                <p class="details-label">Property Information</p>
+                <h2 class="details-title">Complete Property Details</h2>
+                <p class="details-text">
+                    This magnificent fully detached duplex represents the pinnacle of luxury living in Lekki. 
+                    Situated in the prestigious 2nd Toll-Gate, Ikota, this property offers unparalleled comfort, 
+                    security, and sophistication for the interested buyer.
+                </p>
+                <div class="details-list">
+                    <div class="details-list-item">
+                        <span class="details-list-label">Property Type</span>
+                        <span class="details-list-value">Detached Duplex</span>
+                    </div>
+                    <div class="details-list-item">
+                        <span class="details-list-label">Bedrooms</span>
+                        <span class="details-list-value">5 En-suite</span>
+                    </div>
+                    <div class="details-list-item">
+                        <span class="details-list-label">Land Size</span>
+                        <span class="details-list-value">360 sqm</span>
+                    </div>
+                    <div class="details-list-item">
+                        <span class="details-list-label">Title</span>
+                        <span class="details-list-value">Governor's Consent</span>
+                    </div>
+                    <div class="details-list-item">
+                        <span class="details-list-label">Location</span>
+                        <span class="details-list-value">2nd Toll-Gate, Lekki</span>
+                    </div>
+                    <div class="details-list-item">
+                        <span class="details-list-label">Status</span>
+                        <span class="details-list-value">For Sale</span>
+                    </div>
+                </div>
+                <div class="cta-buttons">
+                    <a href="tel:+2349057157601" class="cta-btn primary">
+                        <i class="fas fa-phone"></i> Schedule Viewing
+                    </a>
+                    <a href="https://wa.me/2349057157601" class="cta-btn secondary">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Price Section -->
+    <section class="price-section">
+        <p class="price-label">Investment Value</p>
+        <h2 class="price-value">₦480,000,000</h2>
+        <p class="price-note">Negotiable for serious buyers</p>
+    </section>
+
+    <!-- Location Section -->
+    <section class="location-section" id="location">
+        <div class="location-container">
+            <div class="location-map reveal">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.7286015569043!2d3.5431799!3d6.4312899!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf70dd7e8f9e5%3A0x5f7c7f6c7c7c7c7c!2sLekki%20Toll%20Gate!5e0!3m2!1sen!2sng!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div class="location-content reveal">
+                <h3>Prime Location Benefits</h3>
+                <div class="location-features">
+                    <div class="location-feature">
+                        <div class="location-feature-icon">
+                            <i class="fas fa-road"></i>
+                        </div>
+                        <div class="location-feature-text">
+                            <h4>Easy Accessibility</h4>
+                            <p>Direct access to Lekki-Epe Expressway</p>
+                        </div>
+                    </div>
+                    <div class="location-feature">
+                        <div class="location-feature-icon">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <div class="location-feature-text">
+                            <h4>Shopping & Dining</h4>
+                            <p>Close to premium malls and restaurants</p>
+                        </div>
+                    </div>
+                    <div class="location-feature">
+                        <div class="location-feature-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="location-feature-text">
+                            <h4>Quality Education</h4>
+                            <p>Near top-rated international schools</p>
+                        </div>
+                    </div>
+                    <div class="location-feature">
+                        <div class="location-feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="location-feature-text">
+                            <h4>Secure Neighborhood</h4>
+                            <p>24/7 security in a gated community</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <div class="contact-info reveal">
+                <h3>Let's Discuss Your<br>Dream Home</h3>
+                <p>
+                    Ready to make this exquisite property yours? Contact our dedicated 
+                    team at Ace of Arin Properties for exclusive viewings and detailed 
+                    information about this luxury residence.
+                </p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <span>Phone</span>
+                            +234 913 763 4590
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-text">
+                            <span>WhatsApp</span>
+                            +234 905 715 7601
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <span>Location</span>
+                            2nd Toll-Gate, Ikota, Lagos
+                        </div>
+                    </div>
+                </div>
+                <div class="cta-buttons">
+                    <a href="tel:+2349057157601" class="cta-btn primary">
+                        <i class="fas fa-calendar"></i> Book Inspection
+                    </a>
+                </div>
+            </div>
+            
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">ACE OF ARIN</div>
+            <p class="footer-text">© 2026 Ace of Arin Properties. All Rights Reserved.</p>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="https://wa.me/2349057157601"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/2349057157601" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <span class="lightbox-nav lightbox-prev" onclick="changeSlide(-1)">&#10094;</span>
+        <div class="lightbox-content">
+            <img src="" alt="" id="lightbox-img">
+        </div>
+        <span class="lightbox-nav lightbox-next" onclick="changeSlide(1)">&#10095;</span>
+    </div>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.querySelector('.preloader').classList.add('hidden');
+            }, 2000);
+        });
+
+        // Navigation Scroll Effect
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+                nav.classList.remove('hero-nav');
+            } else {
+                nav.classList.remove('scrolled');
+                nav.classList.add('hero-nav');
+            }
+        });
+
+        // Reveal Animation on Scroll
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const revealPoint = 150;
+                
+                if (elementTop < windowHeight - revealPoint) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+        window.addEventListener('load', reveal);
+
+        // Lightbox Gallery
+        const images = [
+            'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+            'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+            'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+            'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+            'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'
+        ];
+
+        let currentSlide = 0;
+
+        function openLightbox(index) {
+            currentSlide = index;
+            document.getElementById('lightbox-img').src = images[index];
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            
+            if (currentSlide >= images.length) {
+                currentSlide = 0;
+            } else if (currentSlide < 0) {
+                currentSlide = images.length - 1;
+            }
+            
+            document.getElementById('lightbox-img').src = images[currentSlide];
+        }
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            } else if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            } else if (e.key === 'ArrowRight') {
+                changeSlide(1);
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission (prevent default for demo)
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your inquiry! We will contact you shortly.');
+            this.reset();
+        });
+
+        // Counter Animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.overview-value');
+            
+            counters.forEach(counter => {
+                const target = counter.innerText;
+                const isNumber = !isNaN(parseInt(target));
+                
+                if (isNumber) {
+                    const targetNum = parseInt(target);
+                    let current = 0;
+                    const increment = targetNum / 50;
+                    
+                    const updateCounter = () => {
+                        if (current < targetNum) {
+                            current += increment;
+                            counter.innerText = Math.ceil(current);
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.innerText = targetNum;
+                        }
+                    };
+                    
+                    updateCounter();
+                }
+            });
+        }
+
+        // Trigger counter animation when overview section is visible
+        const overviewSection = document.querySelector('.overview');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observer.observe(overviewSection);
+    </script>
+
+</body>
+</html>
